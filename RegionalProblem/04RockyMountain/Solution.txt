@@ -1,0 +1,200 @@
+这套题目已经做完了。http://poj.org/searchproblem?field=source&key=Rocky+Mountain+2004
+
+第一题 Gold Coins ，简单规律计算
+
+第二题 Shortest Prefixes 
+
+#include<iostream>
+using namespace std;
+const int Max = 1002;
+const int branchNum = 26;
+ 
+struct tree_node{
+    int count;   
+    tree_node *next[branchNum];
+}root, node[20*Max];
+int p = 0;
+ 
+void insert(char *word){
+    tree_node *location = &root;
+    while(*word){
+        if(location->next[*word-'a'] == NULL){
+            node[p].count = 0;
+            location->next[*word-'a'] = &node[p ++];
+        }
+        location = location->next[*word-'a'];
+        location->count ++;
+        word ++;
+    }
+}
+ 
+void search(char *word){
+    tree_node *location = &root;
+    while(*word && location){
+        if(location->count == 1) break;
+        printf("%c", *word);
+        location = location->next[*word-'a'];
+        word ++;
+    }
+    printf("\n");
+}
+ 
+int main(){
+    char word[Max][21];
+    int i, k = 0;
+    while(scanf("%s", word[k]) != EOF){
+        insert(word[k]);
+         k ++;
+    }
+    for(i = 0; i < k; i ++){
+        printf("%s ", word[i]);
+        search(word[i]);
+    }
+    return 0;
+}
+
+第三题 Squares 给定平面N个点可以组成多少个正方形，枚举任意两个点，Hash
+
+第四题 Hire and Fire 简单模拟
+
+第五题 Mix and Build 
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<vector>
+#include<algorithm>
+using namespace std;
+const int MAX=11000;
+struct Tire
+{
+    int next[26],id;
+}node[MAX*22];
+int tot=0;
+struct STR
+{
+    char s[22],std[22];
+
+    int v,len,pre;
+
+}str[MAX];
+bool cmp(STR a,STR b)
+{
+    return a.len<b.len;
+}
+void clr()
+{
+    tot++;
+    memset(node[tot].next,-1,sizeof(node[tot].next));
+    node[tot].id=-1;
+}
+void ins(char s[],int id)
+{
+    int h=0,i,tmp;
+    for(i=0;s[i];i++)
+    {
+        tmp=s[i]-'a';
+        if(node[h].next[tmp]==-1)
+        {
+            clr();
+            node[h].next[tmp]=tot;
+        }
+        h=node[h].next[tmp];
+    }
+    node[h].id=id;
+}
+int qq(char s[])
+{
+    int h=0,i,tmp;
+    for(i=0;s[i];i++)
+    {
+        tmp=s[i]-'a';
+        if(node[h].next[tmp]==-1)return -1;
+        h=node[h].next[tmp];
+    }
+    return node[h].id;
+}
+int query(char s[])
+{
+    int i,j,cnt;
+    char tmp[22];
+    int ret=-1;
+    for(i=0;s[i];i++)
+    {
+        if(i>0&&s[i]==s[i-1])continue;
+        cnt=0;
+
+        for(j=0;s[j];j++)
+        {
+            if(i!=j)
+            {
+                tmp[cnt++]=s[j];
+            }
+        }
+        tmp[cnt]=0;
+        int id=qq(tmp);
+        if(id!=-1)
+        {
+            if(ret==-1)ret=id;
+            else if(str[id].v>str[ret].v)
+            {
+                ret=id;
+            }
+        }
+    }
+    return ret;
+}
+void out(int r)
+{
+    if(r!=-1)
+    {
+        out(str[r].pre);
+        puts(str[r].std);
+    }
+}
+int main(void)
+{   
+    int n,m;
+    int i,j;
+    n=0;
+    //while(scanf("%s",str[n].s)!=EOF)
+    while(gets(str[n].s))
+    {
+        str[n].v=1;
+        str[n].len=strlen(str[n].s);
+        strcpy(str[n].std,str[n].s);
+        sort(str[n].s,str[n].s+str[n].len);
+        str[n].pre=-1;
+        n++;
+    }
+    sort(str,str+n,cmp);
+
+    tot=-1;
+    clr();
+    int mid=0;
+    for(i=0;i<n;i++)
+    {
+        if(str[i].len>str[0].len)
+        {
+            str[i].pre=query(str[i].s);
+        }
+        else str[i].pre=-1;
+        if(str[i].pre!=-1)
+        {
+            str[i].v+=str[str[i].pre].v;
+        }
+        if(str[i].v>str[mid].v)
+        {
+            mid=i;
+        }
+        ins(str[i].s,i);
+    }
+
+    out(mid);
+    return 0;
+}
+
+第六题 Blackjack 简单概率计算
+
+第七题 Litmus Test 简单计算
+
+第八题 Scrambled Polygon 简单凸包计算
