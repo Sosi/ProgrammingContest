@@ -1,0 +1,38 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>The dating ritual can be pretty complex.  Here is how it works at a certain 
+cocktail party. All the men and women stand around in a circle, making chitchat.
+Eventually someone gets up his or her nerve and chooses the most desirable 
+remaining person of the opposite
+sex and those 2 go off and discuss world affairs privately.  This continues 
+until either everyone has left, or only one gender remains and they all go home.
+<p>
+The original circle is described by a string <b>circle</b> containing lowercase letters
+for women and uppercase letters for men. The last one in <b>circle</b> is actually adjacent
+to the first one. Starting with the first person in <b>circle</b>, we count from
+1 to <b>k</b> around the circle, letting the k-th person be the first chooser. 
+Letters nearer the
+beginning of the alphabet represent hotter individuals, and the chooser always
+chooses the hottest remaining member of the opposite sex. Starting with the next remaining person
+after the last chooser we again count from one to k (counting only people who still remain in the
+circle) to determine the next chooser.
+This continues until the party breaks up.
+</p><p>
+
+Create a class Dating that contains a method dates that is given <b>circle</b> and <b>k</b> and returns
+a string showing all the dates. The return should list each date as a 2 letter sequence,
+with the chooser before the chosen. The dates should appear in the order in which they
+were made, and with a single space between adjacent dates. There must be no leading
+or trailing spaces in the return.
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Dating</td></tr><tr><td>Method:</td><td>dates</td></tr><tr><td>Parameters:</td><td>string, int</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string dates(string circle, int k)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>circle</b> will contain between 1 and 50 characters, inclusive, all letters 'A'-'Z' or 'a'-'z'.</td></tr><tr><td align="center" valign="top">-</td><td>The characters in <b>circle</b> will be distinct.</td></tr><tr><td align="center" valign="top">-</td><td><b>k</b> will be between 1 and 100, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;abXCd&quot;</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;bC dX&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   Starting at the beginning we count 'a' as 1 and 'b' as 2 so 'b' chooses 'C' since
+   'C' is a lot hotter than 'X'. Then we count 'X' as 1 and 'd' as 2 (since 'C' is
+   off discussing world affairs with 'b') so 'd' chooses 'X'. At this point only
+   'a' is left so the party breaks up.
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;abXCd&quot;</pre></td></tr><tr><td><pre>8</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;Xa dC&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   We count all the way around the circle and arrive at 'X' as the first to choose. 
+   The next chooser is 'd' since we count all the way around the circle more than twice
+   (since there are only 3 people left at this point).
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;HGFhgfz&quot;</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;Hf Gg Fh&quot;</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

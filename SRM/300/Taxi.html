@@ -1,0 +1,26 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>The &quot;taxicab distance&quot; between two points in space is defined to be the distance
+that would need to be travelled to get from one to the other using segments
+that are parallel to the axes.  This is generally longer than the (straight-line)
+distance between the two points.
+<p>
+We know the taxicab distance between two points. We want to know the maximum
+straight-line distance between them if they lie in the
+rectangular region { (x,y) |  0&lt;=x&lt;=<b>maxX</b>, 0&lt;=y&lt;=<b>maxY</b> }. 
+Create a class Taxi that contains a method maxDis that is given <b>maxX</b>, <b>maxY</b>,
+and <b>taxiDis</b> and that returns the largest possible straight-line distance between
+the two points. If no two points within the given region have the given taxicab
+distance, return -1.0.
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Taxi</td></tr><tr><td>Method:</td><td>maxDis</td></tr><tr><td>Parameters:</td><td>int, int, int</td></tr><tr><td>Returns:</td><td>double</td></tr><tr><td>Method signature:</td><td>double maxDis(int maxX, int maxY, int taxiDis)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>maxX</b> and <b>maxY</b> are both between 1 and 1,000,000, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>taxiDis</b> is between 0 and 1,000,000, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>10</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3.0</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   The two points could lie in a straight line parallel to one of the axes. Then
+   the straight-line distance would be the same as the taxicab distance.
+
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>10</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>24</pre></td></tr></table></td></tr><tr><td><pre>Returns: -1.0</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   No two points with 0&lt;=x&lt;=10, 0&lt;=y&lt;=3, have a taxicab distance between them
+   that is as big as 24.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>7</pre></td></tr><tr><td><pre>10</pre></td></tr><tr><td><pre>13</pre></td></tr></table></td></tr><tr><td><pre>Returns: 10.44030650891055</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   (5,0) and (2,10) are two points in this region whose taxicab distance is |2-5| + |10-0| = 13 and whose straight-line distance is sqrt(3*3 + 10*10) = sqrt(109).</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>4</pre></td></tr><tr><td><pre>4</pre></td></tr><tr><td><pre>7</pre></td></tr></table></td></tr><tr><td><pre>Returns: 5.0</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>976421</pre></td></tr><tr><td><pre>976421</pre></td></tr><tr><td><pre>1000000</pre></td></tr></table></td></tr><tr><td><pre>Returns: 976705.6560100387</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

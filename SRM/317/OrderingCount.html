@@ -1,0 +1,29 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+There is a finite set of elements {a<sub>0</sub>, a<sub>1</sub>, ..., a<sub>n-1</sub>} that we need to sort. The final order must satisfy a set of requirements that are each of the form "a<sub>i</sub> must be before a<sub>j</sub>".  However, the set of requirements is not necessarily complete or even possible, so we need to know how many possible orderings satisfy all the requirements.
+</p><p>
+You will be given the set of requirements as a vector &lt;string&gt; <b>req</b> representing a square matrix where the j<sup>th</sup> character of the i<sup>th</sup> element is 'Y' if a<sub>i</sub> is required to be before a<sub>j</sub> in the resulting order, or 'N' if there is no such requirement. Return the number of orderings of {a<sub>0</sub>, a<sub>1</sub> ...,
+a<sub>n-1</sub>} that satisfy all the requirements.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>OrderingCount</td></tr><tr><td>Method:</td><td>countOrderings</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>long long</td></tr><tr><td>Method signature:</td><td>long long countOrderings(vector &lt;string&gt; req)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>req</b> will contain between 1 and 20 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>req</b> will contain exactly N characters, where N is the number of elements in <b>req</b>.</td></tr><tr><td align="center" valign="top">-</td><td>Each character of each element of <b>req</b> will be either 'Y' or 'N'.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;NNNN&quot;,
+ &quot;YNNY&quot;,
+ &quot;NNNN&quot;,
+ &quot;YNNN&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 4</pre></td></tr><tr><td><table><tr><td colspan="2">Note that elements a<sub>0</sub>, a<sub>1</sub> and a<sub>3</sub> must be in the order <tt>a<sub>1</sub>-a<sub>3</sub>-a<sub>0</sub></tt> due to the requirements. On the other hand, element a<sub>2</sub> is not involved in any requirement so it can be placed anywhere. Therefore, the possible orderings are:
+<pre>
+a<sub>1</sub>-a<sub>3</sub>-a<sub>0</sub>-a<sub>2</sub>
+a<sub>1</sub>-a<sub>3</sub>-a<sub>2</sub>-a<sub>0</sub>
+a<sub>1</sub>-a<sub>2</sub>-a<sub>3</sub>-a<sub>0</sub>
+a<sub>2</sub>-a<sub>1</sub>-a<sub>3</sub>-a<sub>0</sub>
+</pre></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;NYN&quot;,
+ &quot;NNY&quot;,
+ &quot;YNN&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">Each element is required to be before some other element, so no element can be the last one and no ordering is possible.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;NNNNN&quot;,&quot;NNNNN&quot;,&quot;NNNNN&quot;,&quot;NNNNN&quot;,&quot;NNNNN&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 120</pre></td></tr><tr><td><table><tr><td colspan="2">Having no requirements make all 5! orderings possible.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;NYNNNN&quot;,
+ &quot;NNYNNN&quot;,
+ &quot;NNNYNN&quot;,
+ &quot;NNNNYN&quot;,
+ &quot;NNNNNY&quot;,
+ &quot;NNNNNN&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">Only the order <tt>a<sub>0</sub>-a<sub>1</sub>-a<sub>2</sub>-a<sub>3</sub>-a<sub>4</sub>-a<sub>5</sub></tt> is possible here.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;NNYNNN&quot;,
+ &quot;YNYNNN&quot;,
+ &quot;NNNNNN&quot;,
+ &quot;NNNNNN&quot;,
+ &quot;NNYYNN&quot;,
+ &quot;NNYNNN&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 42</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;NNN&quot;,
+ &quot;NYN&quot;,
+ &quot;NNN&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">a<sub>1</sub> can't be before itself.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

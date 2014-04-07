@@ -1,0 +1,35 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Imagine a simple input dialog box. The user is supposed to enter a positive integer from a given range into the box.
+</p>
+
+<p>
+Recently you realized that sometimes you can tell that the user's input is invalid before he finishes entering the number. 
+For example, if the valid range is 300 to 347, and the user wants to enter the number 372, as soon as he types &quot;37&quot; you can be sure
+that his input won't be valid.
+</p>
+
+<p>
+More precisely, we call a number <i>valid</i> if it is a prefix of some number in the given range, and <i>invalid</i> otherwise.
+</p>
+
+<p>
+You are given two ints <b>smallest</b> and <b>largest</b> (denoting the range of valid inputs),
+and a vector &lt;int&gt; <b>numbers</b>.
+The range of valid inputs contains all integers between <b>smallest</b> and <b>largest</b>, inclusive.
+</p>
+
+<p>
+Write a method that will determine for each number in <b>numbers</b> whether it represents a valid input for the given range.
+Return a vector &lt;string&gt; that has the same number of elements
+as <b>numbers</b>. If the i-th element of <b>numbers</b> represents a valid input, the i-th element of the return value
+has to be &quot;<tt>VALID</tt>&quot;, otherwise it has to be &quot;<tt>INVALID</tt>&quot; (quotes for clarity only).
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>InputBoxChecker</td></tr><tr><td>Method:</td><td>checkPrefix</td></tr><tr><td>Parameters:</td><td>int, int, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>vector &lt;string&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;string&gt; checkPrefix(int smallest, int largest, vector &lt;int&gt; numbers)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>smallest</b> is between 1 and 2,000,000,000, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>largest</b> is between 1 and 2,000,000,000, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>smallest</b> is less than or equal to <b>largest</b>.</td></tr><tr><td align="center" valign="top">-</td><td><b>numbers</b> contains between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element in <b>numbers</b> is between 1 and 2,000,000,000, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>300</pre></td></tr><tr><td><pre>347</pre></td></tr><tr><td><pre>{37}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;INVALID&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">This is the example from the problem statement.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>310</pre></td></tr><tr><td><pre>320</pre></td></tr><tr><td><pre>{3, 31, 317, 3174, 310, 320}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;VALID&quot;, &quot;VALID&quot;, &quot;VALID&quot;, &quot;INVALID&quot;, &quot;VALID&quot;, &quot;VALID&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">Please note that <b>smallest</b> and <b>largest</b> represent an inclusive range.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>600</pre></td></tr><tr><td><pre>1020</pre></td></tr><tr><td><pre>{7, 73, 734, 7349}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;VALID&quot;, &quot;VALID&quot;, &quot;VALID&quot;, &quot;INVALID&quot; }</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>64</pre></td></tr><tr><td><pre>78</pre></td></tr><tr><td><pre>{1,2,3,4,5,6,7,8,9}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{&quot;INVALID&quot;,
+ &quot;INVALID&quot;,
+ &quot;INVALID&quot;,
+ &quot;INVALID&quot;,
+ &quot;INVALID&quot;,
+ &quot;VALID&quot;,
+ &quot;VALID&quot;,
+ &quot;INVALID&quot;,
+ &quot;INVALID&quot; }</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>1234567890</pre></td></tr><tr><td><pre>{123, 456, 789, 1234567, 7654321, 3245354, 325432532, 243212}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;VALID&quot;, &quot;VALID&quot;, &quot;VALID&quot;, &quot;VALID&quot;, &quot;VALID&quot;, &quot;VALID&quot;, &quot;VALID&quot;, &quot;VALID&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">Watch out for the time limit.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

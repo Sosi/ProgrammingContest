@@ -1,0 +1,17 @@
+1 简单的等比等差数列
+2 第二个问题是比较trick的。
+The crucial part is to notice that in each optimal solution we can always have one joker box, even if we don't use it at all. That joker box doesn't need to contain marbles of different colors - it may also contain only marbles of the same color or even contain no marbles at all. Now, let's try every box as a joker box and try to optimally solve the problem in each situation. If we know how to do that, the solution is the minimum of optimal solutions for all these situations. Let's see what would we do with each box (except joker box) in dependence with box state:
+
+Box is empty
+
+We will eliminate those boxes from consideration as they don't have any importance. Instead of moving marbles to such box, we can move them to joker box.
+Box contains marbles of different colors
+
+As each box must either be empty or contain only marbles of the same color, we will surely need to eliminate some marbles from that box. So, one move will surely be performed. As we can take any number of marbles from one box in one move, why not move all marbles from that box into joker box. So, move them all.
+Box contains only marbles of the same color
+
+As we cleared all boxes with state 1 or 2, we got only boxes which contain only marbles of the same color. The only trouble we can have now is the restriction that all marbles of the same color (except those in the joker box) must be in the same box. So, if marbles of the same color (except those in the joker box) are distributed in multiple different boxes, we need to group them into one box. So, clear all those boxes, except one.
+
+核心的观察就是我们可以把marble放到joker里面。。
+
+

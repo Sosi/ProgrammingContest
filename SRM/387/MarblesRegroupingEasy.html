@@ -1,0 +1,46 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+John is a marble collector. He keeps his marbles in boxes. He also likes to keep things in order.
+</p>
+
+<p>
+One day, his younger brother was playing with the marbles.  After he was done, he put all the marbles back in boxes, but he did it randomly, so certain boxes might now contain marbles of different colors. John wants him to regroup the marbles so that the grouping satisfies the following restrictions:
+</p>
+
+<ul>
+<li>At most one box, called the joker box, may contain marbles of different colors. We can choose any box as a joker box.</li>
+<li>Every box except the joker box must either be empty or only contain marbles of the same color.</li>
+<li>All marbles of the same color, except those in the joker box, must be in the same box. It's possible that all marbles of the same color are in the joker box.</li>
+</ul>
+
+<p>
+You are given a vector &lt;string&gt; <b>boxes</b>, where the j-th digit of the i-th element is the number of marbles of color j in the i-th box. Return the minimal number of moves necessary to regroup the marbles, where each move consists of taking any number of marbles from one box (not necessarily of the same color) and putting them into another.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>MarblesRegroupingEasy</td></tr><tr><td>Method:</td><td>minMoves</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int minMoves(vector &lt;string&gt; boxes)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>boxes</b> will contain between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>boxes</b> will contain between 1 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>All elements of <b>boxes</b> will contain the same number of characters.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>boxes</b> will contain only digits ('0'-'9').</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;20&quot;,
+ &quot;11&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">Let box 1 be the joker box. All marbles of color 0, except those in the joker box, are in box 0. Box 0 contain only marbles of the color 0. So, all restrictions are already satisfied.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;11&quot;,
+ &quot;11&quot;,
+ &quot;10&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">There are several possible solutions:
+<ol>
+<li>Move all marbles from box 0 into box 1. Box 1 is the joker box.</li>
+<li>Move all marbles from box 1 into box 0. Box 0 is the joker box.</li>
+<li>Move the marble of color 0 from box 0 into box 1 or 2. Box 1 is the joker box.</li>
+<li>Move the marble of color 0 from box 1 into box 0 or 2. Box 0 is the joker box.</li>
+</ol>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;10&quot;,
+ &quot;10&quot;,
+ &quot;01&quot;,
+ &quot;01&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">Let box 0 be the joker box. Now we only need to group all marbles of  color 1 into one box.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;11&quot;,
+ &quot;11&quot;,
+ &quot;11&quot;,
+ &quot;10&quot;,
+ &quot;10&quot;,
+ &quot;01&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;020008000070&quot;,
+ &quot;000004000000&quot;,
+ &quot;060000600000&quot;,
+ &quot;006000000362&quot;,
+ &quot;000720000000&quot;,
+ &quot;000040000000&quot;, 
+ &quot;004009003000&quot;,
+ &quot;000800000000&quot;, 
+ &quot;020030003000&quot;,
+ &quot;000500200000&quot;,
+ &quot;000000300000&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 6</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

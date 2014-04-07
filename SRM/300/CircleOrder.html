@@ -1,0 +1,38 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>We have a circular train track on which a number of loaded cars are located. Each 
+car has its own specified unloading position on the track.  The cars can be
+moved in either direction along the track, but cannot pass each other.
+<p>
+We want to specify the order in which the cars should be
+moved. The order of cars must allow each car to be moved just
+once all the way to its unloading position where it will remain. 
+</p><p>
+The cars are each named with a lowercase letter, and their destinations with
+the same letter but in uppercase. The positions of the cars and of their 
+destinations are given by a sequence of letters that is regarded as circular by
+wrapping around the ends. So, for example,  &quot;BACacb&quot; describes a situation in
+which going clockwise around the track we encounter B, A, C, a, c, b, and then 
+return back to B.  Here
+there are 3 different orders in which the cars could be moved to their
+destinations: 'a' then 'c' then 'b', 'a' then 'b' then 'c', or 'b' then 'a' then 'c'.
+</p><p>
+Create a class CircleOrder that contains a method firstOrder that is given the
+original positions in a string <b>circle</b> and that returns the order in which they 
+can be moved as a string, with the first character naming the first
+car to move, the second naming the second car, etc.  
+</p><p>
+If there is more
+than one order possible, give the one that comes first alphabetically.
+If no order is possible, your method should return the 4-letter String &quot;NONE&quot;.
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>CircleOrder</td></tr><tr><td>Method:</td><td>firstOrder</td></tr><tr><td>Parameters:</td><td>string</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string firstOrder(string circle)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>circle</b> will contain between 2 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each character will be a letter, 'a'-'z' or 'A'-'Z'.</td></tr><tr><td align="center" valign="top">-</td><td>No character will appear more than once.</td></tr><tr><td align="center" valign="top">-</td><td>If a letter appears in <b>circle</b>, it will appear both in uppercase and in lowercase.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;BACacb&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;abc&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   This is the example given above. &quot;abc&quot; comes alphabetically before the
+   other two choices, &quot;acb&quot; and &quot;bac&quot;.
+
+
+
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;ABCacb&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;NONE&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+ 
+   We cannot move car 'c' first. If we move 'a' first, then we can never move 'b' to 'B', but 
+   if we move 'b' first we can never move 'a' to 'A'.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;XYxPyp&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;xyp&quot;</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
