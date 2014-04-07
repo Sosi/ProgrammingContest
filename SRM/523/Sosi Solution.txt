@@ -1,0 +1,160 @@
+1 DIV 2 250
+AlphabetPath 
+
+在给定方阵中，求判断是否存在一条从A-Z的路
+
+提取出每一个字母坐标，排序，判断是否满足条件即可。
+struct It
+{
+    int i;
+    int j;
+    char Key;
+};
+bool cmp(It a, It b)
+{
+    return a.Key<b.Key;
+}
+class AlphabetPath
+{
+        public:
+        string doesItExist(vector <string> letterMaze)
+        {
+            C=letterMaze;
+            vector<It> C;
+            for(int i=0; i<letterMaze.size(); i++)
+            {
+                for(int j=0; j<letterMaze[i].size(); j++)
+                {
+                    if(letterMaze[i][j]!='.')
+                    {
+                        It temp;
+                        temp.i=i; temp.j=j; temp.Key=letterMaze[i][j];
+                        C.push_back(temp);
+                    }
+                }
+            }
+            sort(C.begin(),C.end(),cmp);
+            for(int i=0; i<C.size()-1; i++)
+            {
+                if(abs(C[i].i-C[i+1].i) +abs(C[i].j-C[i+1].j) !=1 ) return "NO";
+            }
+            return "YES";
+        }
+}
+
+
+2 DIV 2 500
+CountingSeries
+给定四个整数，a,b,c,d 求值域在1-upperBound 中且满足等式a+bx c*d^y 的数的个数。
+
+可以看出存在乘方关系，所以复杂度立马可以降到log(upperBound),然后对于每一个满足乘方关系的数，看其是否满足a+bx,然后容器原理一下就OK
+class CountingSeries
+{
+        public:
+        long long countThem(long long a, long long b, long long c, long long d, long long upperBound)
+        {
+            long long res = 0LL;
+            vector<long long> Key;
+            long long temp=1LL;
+            if(d!=1LL)
+            {
+                while(c*temp<=upperBound)
+                {
+                    Key.push_back(c*temp);
+                    res++;
+                    temp*=d;
+                }
+            }
+            else
+            {
+                if(c<=upperBound)
+                {
+                Key.push_back(c); res++;
+                }
+            }
+            for(long long i=0; i<Key.size(); i++)
+                if( (Key[i]-a)>=0 && (Key[i]-a)%b ==0) res--;
+            if(upperBound >=a)
+                res+=(upperBound-a)/b+1;
+            return res;
+        }
+}
+
+3 DIV 2 1000
+    It is a counting problem, it is often the case that finding a recurrance  is a useful step. If we want a recurrence, we need a way to divide an instace of the problem into smaller instances.
+
+	给定一个基座，长度为w,然后上面可以放1*1,1*2，1*3 的长方块，长方块不能无双支撑点，(具体看题目表述)，求w宽至多h高的摆放方式有多少种？ 数据规模中w和h都是10。
+	
+	其中的一个思路是很直接的，某一行的摆放方式，只与其上一行有关系，那么我可以回溯的来求有多少种摆放方式。
+class SmallBricks31
+{
+public:
+    int M[11][1<<10];
+    int W;
+    int PK(int h, int previousrow,int x, int currentrow)
+    {
+        if(x==W) return rec(h-1,currentrow);
+
+            long long res=0;
+            res+= PK(h,previousrow,x+1,currentrow);
+            int  b =previousrow& (1<<x);
+            if(b)
+            {
+                int nrow = currentrow |(1<<(x));
+                res+=PK(h,previousrow,x+1,nrow);
+            }
+            if(b && (previousrow & (1<<(x+1))))
+            {
+                int nrow = currentrow | (1<<(x))| (1<<(x+1));
+                res+=PK(h,previousrow,x+2,nrow);
+            }
+            if(b && (previousrow & (1<<(x+2))))
+            {
+                int nrow = currentrow | (1<<(x))| (1<<(x+1))| (1<<(x+2));
+                res+= PK(h,previousrow, x+3,nrow);
+            }
+            return (int)(res % 1000000007);
+
+    }
+
+    int rec(int h, int previousrow)
+    {
+        int & res = M[h][previousrow];
+        if(res==-1)
+        {
+            if(h==0)
+                res= 1;
+            else
+                res= PK(h,previousrow,0,0);
+        }
+        return res;
+    }
+    int countWays(int w, int h)
+    {
+        this->W=w;
+        memset(M,-1,sizeof(M));
+        return rec(h,(1<<w)-1);
+    }
+}
+
+DIV 1 250 
+
+同DIV2 500
+
+
+DIV 2 500 
+
+题意同DIV 2 1000，有一个小修正就是不准跨空格了。。。
+但是加强了一个条件是小方块可以从1*1 ，1*2 ， 1*3，  到1*k，数据规模是 50.
+
+很显然，其实这个题目最本质的想法就是动态规划！
+
+  In counting problems, it is usually helpful to try a dynamic programming solution. if we want a dynamic programming solution, we need a recurrence. If we want a recurrence, we need to divide the problem into smaller versions of it.
+  
+  可以很简单的看出了这个问题的子问题就是每一个的分界点在哪里！！所以动态规划的状态就是枚举分界点在哪里！？
+  
+  F(w,h)=SUM(G(x)*F(x,h-1)*F(w-x-1,h))+ G(w)*F(w,h-1).
+  当x=0,表示第一列为空，当x=w-1的时候，表示最后一列为空。G(x)表示连续x个非空的个数是多少个，这个又是一个简单的DP。
+  这个题目真的非常赞！
+  
+  

@@ -1,0 +1,132 @@
+DIV 2
+
+250 PointErasingTwo
+
+在二维平面内有一些点，坐标已知，当选择平面内的两个点作为矩形的对角点，问一次最多可以删掉的点是多少个
+
+遍历就好Easy
+
+    int getMaximum(vector <int> y)
+    {
+        int ret=0;
+        for( int i=0; i<y.size(); i++)
+        {
+            for(int j=i+1; j<y.size(); j++)
+            {
+                if(y[i] > y[j])
+                {
+                    int res=0;
+                    for(int k=i+1; k<j; k++)
+                    {
+                        if(y[k] > y[j]  && y[k]  < y[i]) res++;
+                    }
+                    ret=max(res,ret);
+                }
+                if(y[i] < y[j])
+                {
+                    int res=0;
+                    for(int k=i+1; k<j; k++)
+                    {
+                        if( y[k]> y[i] && y[k]< y[j]) res++;
+                    }
+                    ret=max(res,ret);
+                }
+
+            }
+        }
+        return ret;
+    }
+	
+600 RowAndManyCoins 
+
+给定一个AB杂乱的序列串，A和B可以做如下操作，选择连续一段，然后删除掉。最后一个删除的如果是A，则A胜，是B则B胜。
+
+很简单的博弈，考虑极端情况，A先手，如果字符串是A* 或者*A，则A做的操作是删除掉*即可。如果是B*B，则A必败。当A做了先手之后，则B的操作就是把A的所做的某一边操作覆盖成B*__B 或者 B__*B 下划线为B的操作。
+
+        string getWinner(string cells)
+        {
+            if(cells[0]=='A'|| cells[cells.size()-1]=='A') return "Alice";
+			else return "Bob";
+        }
+
+900 CorrectMultiplicationTwo
+
+给定整数 a,b,c 求a,b,c 加以调整之后满足A*B=C,min(abs(A-a)+abs(B-b)+abs(C-c)) 数据范围是10^5
+
+一个非常直观的想法是调整A和B使得C尽量少的变化就OK，非常直观的是 A*(B+1)=C+A    (A+1)*B=C+B, A 或者B 改变1 ，那么C就要付出A或者B的改变代价
+所以C是可以尽量不动的。所以解法就非常直观了，调整A，B即可。
+
+        int getMinimum(long long a, long long b, long long c)
+        {
+			long long ret=1000000LL* 10000000LL;
+			for(long long A=1; A<=1000000; A++)
+			{
+				for(long long dB=0; dB<2; dB++)
+				{
+					long long B= c/A + dB;
+					if(B==0) continue;
+					long long C= A*B;
+					if(abs(A-a)+ abs(B-b) + abs(C-c)<  ret) ret=abs(A-a)+ abs(B-b) + abs(C-c);
+				}
+			}
+			return ret;
+        }
+
+
+
+		
+DIV 1
+
+
+250 RowAndCoins
+
+同DIV2 的500
+
+
+
+450 CorrentMultiplication
+
+题意同DIV2 的900,数据规模为 10^9 ，很显然O(n)是不可以的。
+在基于上述的观察之后，我们可以获得一个更进一步的观察。A*B=C,既然C的数据规模只有10^9，那么A和B中较小的那个必然小于sqrt(10^9).
+枚举A和B中较小的那个可以取到的值就OK了！！所以复杂度降到了O(sqrt(n))
+
+
+        long long getMinimum(int a, int b, int c)
+        {
+            long long ret = LONG_LONG_MAX;
+            long long LIM = 100000;
+            cout<<LONG_LONG_MAX<<endl;;
+            cout<<INT_MAX<<endl;
+            //cout<<UNSIGNED_INT_MAX<<endl;
+			for(long long A=1; A<=LIM; A++)
+			{
+				for(long long dB=0; dB<2; dB++)
+				{
+					long long B= c/A + dB;
+					if(B==0) continue;
+					long long C= A*B;
+					if(abs(A-a)+ abs(B-b) + abs(C-c)<  ret) ret=abs(A-a)+ abs(B-b) + abs(C-c);
+					if(ret==0) return 0LL;
+				}
+			}
+			swap(a,b);
+			for(long long A=1; A<=LIM; A++)
+			{
+				for(long long dB=0; dB<2; dB++)
+				{
+					long long B= c/A + dB;
+					if(B==0) continue;
+					long long C= A*B;
+					if(abs(A-a)+ abs(B-b) + abs(C-c)<  ret) ret=abs(A-a)+ abs(B-b) + abs(C-c);
+					if(ret==0) return 0LL;
+				}
+			}
+			return ret;
+        }
+
+		
+1050  PointErasing
+
+给定一个序列，求删除一些点之后，使得获得的序列中不存在3个数形成严格升序或者严格降序。求剩余的点数的可能值
+
+可以确定的是一个DP，但是不太确定状态怎么表示。。。这周末研究一下。。

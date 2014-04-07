@@ -1,0 +1,29 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>Magical Girl Sayaka just learned about Conway's Game of Life. She is now thinking about new rules for this game.<br></br><br></br>
+In the Game of Life, an infinite plane is divided into a grid of unit square cells. 
+At any moment, each cell is either alive or dead.
+Every second the state of each cell changes according to a fixed rule.
+In Sayaka's version of the game the following rule is used: <br></br>
+<ul>
+<li> Consider any cell C. Look at the current states of the cell C and all four cells that share a side with C. </li>
+<li> If at least one of these five cells are alive, cell C will be alive in the next second. Otherwise, cell C will be dead in the next second. </li>
+<li> Note that each second the rule is applied on all cells at the same time. </li> </ul>
+Sayaka wants to know how many cells are alive after <b>K</b> seconds.<br></br><br></br>
+You are given the int <b>K</b> and a vector &lt;string&gt; <b>field</b> that describes the initial state of the plane. <b>field</b> describes only some rectangular area of the plane. More precisely, character j of element i of <b>field</b> is 'o' if the cell in the i-th row of the j-th column of the rectangular area is alive, and it is '.' otherwise. Cells which aren't described in <b>field</b> is initially all dead. <br></br>
+Return the number of alive cells after <b>K</b> seconds.</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>NonXorLife</td></tr><tr><td>Method:</td><td>countAliveCells</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;, int</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int countAliveCells(vector &lt;string&gt; field, int K)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>field</b> will contain between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each elements of <b>field</b> will contain between 1 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>All elements of <b>field</b> will contain the same number of characters.</td></tr><tr><td align="center" valign="top">-</td><td>Each character in each element of <b>field</b> will be either 'o' or '.'.</td></tr><tr><td align="center" valign="top">-</td><td><b>K</b> will be between 1 and 1500, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;oo&quot;
+,&quot;o.&quot;}</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: 36</pre></td></tr><tr><td><table><tr><td colspan="2">The status after 3 seconds is below.
+<pre>...oo...
+..oooo..
+.oooooo.
+oooooooo
+ooooooo.
+.ooooo..
+..ooo...
+...o....</pre></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;..&quot;
+,&quot;..&quot;}</pre></td></tr><tr><td><pre>23</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">All cells of the plane can be dead.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;o&quot;}</pre></td></tr><tr><td><pre>1000</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2002001</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;o.oo.ooo&quot;
+,&quot;o.o.o.oo&quot;
+,&quot;ooo.oooo&quot;
+,&quot;o.o..o.o&quot;
+,&quot;o.o..o.o&quot;
+,&quot;o..oooo.&quot;
+,&quot;..o.o.oo&quot;
+,&quot;oo.ooo.o&quot;}</pre></td></tr><tr><td><pre>1234</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3082590</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

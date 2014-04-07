@@ -1,0 +1,112 @@
+DIV 2  250 
+ 给定一个字符串，判断其是否是由 pi ka chu 组成的。
+PikachuEasy
+
+string check(string word)
+        {
+                bool flag = 0;
+                for(int i=0; i<word.size(); )
+                {
+                    if(i+2<= word.size() && word[i] == 'p' && word[i+1]=='i' ) i+=2;
+                    else if(i+2 <= word.size() && word[i]=='k' && word[i+1] == 'a') i+=2;
+                    else if(i+3 <= word.size() && word[i] == 'c' && word[i+1] == 'h' && word[i+2] == 'u') i+=3;
+                    else{
+                        flag=1; break;
+                    }
+                }
+                if(flag==0) return "YES";
+                else return "NO";
+        }
+		
+		当然Java可以使用正则表达式，
+		public class PikachuEasy {
+		public String check(String word) {
+			return word.matches("((pi)|(ka)|(chu))*") ? "YES" : "NO";
+			}
+		}
+		
+		
+DIV 2 500 CasketOfStarEasy
+
+给定一个序列，可以以任意顺序删除某个字符，得分为其相邻两数字的乘积，最后剩余首尾两个数字，求最大得分。
+
+第一个想法就是枚举。。。，毕竟数字长度才有10，所以枚举负责度是8！= 40320，
+		int maxEnergy(vector <int> weight)
+        {
+                int n = weight.size();
+                vector<int> vec;
+                for(int i=1; i<weight.size()-1; i++) vec.push_back(i);
+                sort(vec.begin(),vec.end());
+                int ret=0;
+                do
+                {
+                    vector<bool> flag(n,1);
+                    int sum=0;
+                    for(int i=0; i<vec.size(); i++)
+                    {
+                        flag[vec[i]]=0;
+                        int left=0; int right=0;
+                        for(int j=vec[i]-1; j>=0; j--)
+                        {
+                            if(flag[j]== 1)
+                            {
+                                left=weight[j]; break;
+                            }
+                        }
+                        for(int j=vec[i]+1; j<n; j++)
+                        {
+                            if(flag[j] == 1)
+                            {
+                                right = weight[j]; break;
+                            }
+                        }
+                        sum+=left*right;
+                    }
+                    ret = max(ret, sum);
+                }while(next_permutation(vec.begin(),vec.end()));
+                return ret;
+        }
+
+第二个想法是，这个和矩阵连乘的模型巨相似，想法当然是DP，转移方程是类似于矩阵连乘的转移模型。	
+
+public class CasketOfStar {
+    public int maxEnergy(int[] weight)
+    {
+        int n = weight.length;
+        int dp[][] = new int[n][n]; // DP[i][j] is the answer to subsequence weight[i...j].
+        for(int d = 1 ; d < n ; d++) // If DP[a][b] dependes on DP[c][d], we have: |c-d| < |a-b|, so we do DP in the order of (i-j).
+            for(int i = 0 ; i+d < n ; i++)
+            {
+                if(d == 1)
+                    dp[i][i+d] = 0; // {W[i], W[i+1]} => {W[i], W[i+1]} needs not any operation, so the answer is 0.
+                else
+                {
+                    dp[i][i+d] = 0;
+                    for(int j = i+1 ; j < i+d ; j++)
+                        if(dp[i][j] + dp[j][i+d] + weight[i] * weight[i+d] > dp[i][i+d])
+                            dp[i][i+d] = dp[i][j] + dp[j][i+d] + weight[i] * weight[i+d]; // We try every element as the first one we insert.
+                }
+            }
+        return dp[0][n-1];
+    }
+}	
+DIV 2 1000 MagicalGirl
+
+给定一个RPG游戏模型， 某人去练级打怪，每次打怪可以+血，或者阵亡，求 选择打怪或者不打，求存活天数的最大期望
+
+这个是一个很显然的DP模型，注意一个的问题是，不要简单的用递推向后求，使用Day+ blood 的方式很显然的一个问题是当前的blood不能够支持你走到结果，因为这个blood是最优概率的情况下产生的。
+
+这个要自己写。。。
+
+
+DIV 250 CasketOfStar 
+
+如同DIV2 500
+
+
+DIV 500 MagicBoard 
+
+
+
+
+

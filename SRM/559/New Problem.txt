@@ -1,0 +1,15 @@
+根据Div 2 250的题目新想到一个题目，若条件一
+The blocks must be stacked in a single column, one atop another. The height of the tower is simply the sum of heights of all its blocks.
+
+变成了合并block，然后变成一个新的block，新的block的长度是就的旧的block的长度之和。那么这个问题怎么解？
+
+首先要做一步预处理，使得最后的数据变成，一片奇数 + 一个偶数 + 一片奇数 + 一个偶数 的形式。。。
+
+然后用DP方法来做，dp方程是dp[i][0] 表示处理到第i个块之后，最后获得的block的长度为偶数。
+
+
+所以 dp[i+1][0] = 当处理到奇数区的时候 max（dp[i][0]  + 偶数个奇数(去最小值之类的。。 ， dp[i][1] + 奇数个奇数去最小值）)）
+当处理到偶数区的时候， dp[i][0]+ /Sigma 求和
+
+
+dp[i+1][1] 同样的方式进行处理。。。

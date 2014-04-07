@@ -1,0 +1,35 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>There are N cells in a row.
+The cells are numbered 0 through N-1 from left to right.
+Magical Girl Riena wants to give magical powers to all the cells by painting all of them using magic colors.
+Riena starts at time 0 in cell 0.
+She can do three types of actions:
+<ul>
+<li>She can wait in her current cell for as long as she wants.</li>
+<li>She may move to an adjacent cell. The move takes 1 unit of time.</li>
+<li>She may paint an adjacent cell. Painting the cell takes 1 unit of time. (Note that she cannot paint the cell she currently stands in, only the adjacent ones.)</li>
+</ul>
+There is one additional restriction: Riena cannot enter a freshly painted cell until the paint dries.
+You are given a vector &lt;int&gt; <b>dryingTime</b> with N elements.
+For each i, <b>dryingTime</b>[i] is the time needed for the paint in the cell i to dry after Riena <i>finished</i> painting the cell.
+Once cell i has already been painted, Riena is not allowed to <i>start moving</i> to cell i before the paint in cell i gets dry.
+<br></br>
+For example, suppose that Riena is currently in cell 3 and we have <b>dryingTime</b>[2]=7.
+At time 12 Riena starts painting the adjacent cell 2.
+She will finish painting the cell at time 12+1 = 13.
+The paint in the cell will be dry at time 13+7 = 20.
+Therefore, the earliest time Riena can be in cell 2 again is 21.
+(At time 20 she can start moving from cell 3 to cell 2, and the move takes 1 unit of time.)
+<br></br>
+Riena wants to paint all N cells, and she wants to finish painting as quickly as possible.
+She may paint the cells in any order she likes.
+Compute and return the earliest possible time when Riena can finish painting the last cell.
+(Note that the return value you are trying to minimize is the moment when Riena finishes painting, not the moment when the paint dries.)</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>ColorTheCells</td></tr><tr><td>Method:</td><td>minimalTime</td></tr><tr><td>Parameters:</td><td>vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int minimalTime(vector &lt;int&gt; dryingTime)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>dryingTime</b> will contain between 2 and 7 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>dryingTime</b> will be between 1 and 100,000, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{2, 2, 3}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 6</pre></td></tr><tr><td><table><tr><td colspan="2">One of the optimal solutions:
+<ul>
+<li>At time 0, Riena starts moving from cell 0 to cell 1.</li>
+<li>At time 1, she reaches cell 1 and starts painting cell 0.</li>
+<li>At time 2, she finishes painting cell 0 and starts painting cell 2. The paint in cell 0 starts drying.</li>
+<li>At time 3, Riena finishes painting cell 2. The paint in cell 2 starts drying. Riena now has to wait because she already painted both adjacent cells and she cannot move to either of them yet.</li>
+<li>At time 4, cell 0 becomes dry and Riena starts moving from cell 1 to cell 0.</li>
+<li>At time 5, Riena reaches cell 0 and starts painting cell 1.</li>
+<li>At time 6, Riena finishes painting cell 1 and she is done. (Also, cell 2 is now dry and cell 1 will be dry at time 8, but we don't care about them any more.)</li>
+</ul></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{1, 2, 100, 1}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 7</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{33, 58, 21, 44}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 26</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{35198, 26281, 72533, 91031, 44326, 43178, 85530}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 26287</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
