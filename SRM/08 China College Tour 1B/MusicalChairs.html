@@ -1,0 +1,45 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+
+In the game of Musical Chairs, <i>n</i> players walk around a circle of
+<i>n-1</i> chairs while music plays on the stereo. When the music stops,
+everyone hurries to claim a chair. The player who is left standing gets
+knocked out of the game.
+
+</p><p>
+
+You are given a vector &lt;string&gt; <b>playerNames</b> containing the names of the players, ordered according to
+their position at the start of the game, such as the following.
+
+</p>
+<pre>
+  {&quot;Emma Sue&quot;, &quot;Billy Bob Thornton&quot;, &quot;Joe&quot;, &quot;Cassius Clay&quot;}
+</pre>
+<p>
+You are also given a string <b>chairs</b> describing the arrangement of
+chairs with an 'h' (lowercase letter H) for each chair and exactly one
+'.' (period) indicating a gap. The i-th character of <b>chairs</b> corresponds to the i-th element
+of <b>playerNames</b>. For instance, the chairs might be arranged
+as follows.
+
+</p>
+<pre>
+  &quot;hh.h&quot;
+</pre>
+<p>
+The player by the gap is the one who gets knocked out. For example,
+if the four players above are in their starting order when the music
+stops, then Joe gets knocked out.
+</p>
+<p>
+For each second of music, the players advance one position. From the
+original order shown above, for example, the players' order changes to
+the following after one second.
+</p>
+<pre>
+  {&quot;Cassius Clay&quot;, &quot;Emma Sue&quot;, &quot;Billy Bob Thornton&quot;, &quot;Joe&quot;}
+</pre>
+<p>
+Given an int <b>seconds</b> specifying the number of seconds that the
+music is played, return the name of the player who gets knocked out.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>MusicalChairs</td></tr><tr><td>Method:</td><td>knockedOut</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;, string, int</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string knockedOut(vector &lt;string&gt; playerNames, string chairs, int seconds)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>playerNames</b> will contain between 2 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>playerNames</b> will contain between 1 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>playerNames</b> will contain only letters ('A'-'Z', 'a'-'z') and spaces (' ').</td></tr><tr><td align="center" valign="top">-</td><td><b>chairs</b> will contain the same number of characters as the number of elements in <b>playerNames</b>.</td></tr><tr><td align="center" valign="top">-</td><td>Exactly one character in <b>chairs</b> will be '.', and all the other characters will be 'h'.</td></tr><tr><td align="center" valign="top">-</td><td><b>seconds</b> will be between 0 and 600, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;Emma Sue&quot;, &quot;Billy Bob Thornton&quot;, &quot;Joe&quot;, &quot;Cassius Clay&quot;}</pre></td></tr><tr><td><pre>&quot;hh.h&quot;</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;Billy Bob Thornton&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">The example from the problem statement.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;Emma Sue&quot;, &quot;Billy Bob Thornton&quot;, &quot;Joe&quot;, &quot;Cassius Clay&quot;}</pre></td></tr><tr><td><pre>&quot;hh.h&quot;</pre></td></tr><tr><td><pre>4</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;Joe&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">After 4 seconds, the players are exactly at the same positions as in the beginning.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;Jack Dempsey&quot;, &quot;Joe Louis&quot;, &quot;Rocky Marciano&quot;,
+ &quot;Cassius Clay&quot;, &quot;George Foreman&quot;, &quot;Mike Tyson&quot;}</pre></td></tr><tr><td><pre>&quot;h.hhhh&quot;</pre></td></tr><tr><td><pre>500</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;Mike Tyson&quot;</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;  itchy   &quot;, &quot;SCRATCHY&quot;}</pre></td></tr><tr><td><pre>&quot;.h&quot;</pre></td></tr><tr><td><pre>0</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;  itchy   &quot;</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;Moe&quot;, &quot;Larry&quot;, &quot;Curly&quot;, &quot;Moe&quot;}</pre></td></tr><tr><td><pre>&quot;hh.h&quot;</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;Moe&quot;</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
