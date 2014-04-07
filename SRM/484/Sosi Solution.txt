@@ -1,0 +1,132 @@
+DIV 2
+
+1 250 
+ 十分无耻的一道题目，无耻的过掉
+2 550
+  需要比较强的YY能力。
+  按照题目给出的思路，很显然不能有进位！然后数字只剩下了0 1 2 3；
+  我的第一反应是这些东西，应该是前面的某些数字的组合。。。(这个十分逼近答案了。。无语，然后卡住了)
+  既然只剩下了0123，很显然的四进制！我们算一下10^9次方范围上，这样的数究竟有多少个呢？2^18(0也算在内了) 2^18这个数很小的！262144，然后逐个检查吧！
+    看到这种low 和high数据范围的题目往往让人们想到数学解法。。怎么从数学中转到计算机中，是一门能力啊！
+	
+long long  S(long long N)
+{
+	int ans=0;
+	while(N>0)
+		ans+=N%10,N/=10;
+	return ans;
+
+}
+class RabbitNumber
+{
+        public:
+        int theCount(int low, int high)
+        {
+			int ans=0;
+			for(int i=0;i<(1<<18);i++)
+			{
+				long long x=0,y=i;
+				for(int j=0;j<9;j++){x=x*10+y%4;y/=4;}
+				if(x>=low&&x<=high && S(x*x)==S(x)*S(x))ans++;
+			}
+			if(high==1000000000)ans++;
+			return ans;                
+        }
+};
+如果你是在没有观察出来，这个4进制，也没有关系，来看一下S(x)的性质。如果x的数据范围是10^9，那么S(x*x)是多大呢？ 9*18=162，然后S(x)的范围就是sqrt(162)<13.我们枚举数字之和小于等于14的数就完全OK。
+那么数字之和小于等于14 的大概有多少呢？  319770！ 也是一个相当小的数！
+#define LL long long
+const int limit = 14; 
+const int MaxN = 9; 
+int S, L,R; 
+int res; 
+
+int f(LL x) { 
+	int ret=0; 
+	while(x)ret+=x%10,x/=10; 
+	return ret; 
+} 
+
+int Dfs(int d, LL x, int r) {
+	cout<<d<<"     "<<x<<"       "<<r<<endl;
+	if(x > R) return 0; 
+	if(x >= L && x <= R) { 
+		if((14-r)*(14-r) == f((LL)x * x)) ++ res; 
+	} 
+	for(int c = !d ; c < 10 && c <= r; ++ c) 
+		Dfs(d + 1, x * 10 + c, r - c); 
+} 
+
+class RabbitNumber
+{ 
+public: 
+	int theCount(int l, int r){ 
+		L=l;R=r; 
+		res=0; 
+		if(R == 1000000000) ++ res, -- R; 
+		if(L > R) return res; 
+		Dfs(0,0,14); 
+		return res; 
+	} 
+};
+
+3 很显然纯粹枚举，当然没戏！但是有技巧的枚举(剪枝)还是可以的！比如说，纯粹暴力数据时2^40,如果我们枚举四个对角点，则数据范围下降到了2^20！这种剪枝技巧实在是太强大了！
+比如枚举0 2 5 7
+
+class CubeColoring
+{
+public:
+	long long theCount(vector <string> colors)
+	{
+		int n=colors[0].size();
+		long long res=0;
+		for(int a=0;a<n;a++)for(int c=0;c<n;c++)for(int f=0;f<n;f++)for(int h=0;h<n;h++)
+		{
+			if(colors[0][a]=='Y'&&colors[2][c]=='Y'&&colors[5][f]=='Y'&&colors[7][h]=='Y')
+			{
+				int B=0;for(int b=0;b<n;b++)if(b!=a&&b!=c&&b!=f&&colors[1][b]=='Y')B++;
+				int D=0;for(int d=0;d<n;d++)if(d!=a&&d!=c&&d!=h&&colors[3][d]=='Y')D++;
+				int E=0;for(int e=0;e<n;e++)if(e!=a&&e!=f&&e!=h&&colors[4][e]=='Y')E++;
+				int G=0;for(int g=0;g<n;g++)if(g!=c&&g!=f&&g!=h&&colors[6][g]=='Y')G++;
+				res +=B*D*E*G;
+
+			}
+
+
+		}
+		return res;             
+	}
+};
+
+Test Case: 5
+Succeeded: Yes
+Execution Time: 604 ms
+Args:
+{{"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"}}
+
+Expected:
+751325186912
+
+Received:
+751325186912
+
+操作规模是2^27的，数据规模是一亿三千万....TC还是蛮快的！
+
+这个问题的难点是怎么找到处理数据的方法，解法中就是把0 2 5 7单独抽离，做枚举！
+
+
+整个DIV2的题目都是在处理数据范围上下功夫！毕竟，这是coder的一个基本功！
+
+
+
+DIV 1 
+
+1 550
+一样的一个组合DP问题，与SRM 478 rng58的那个dp组合问题相似！以后再整理！
+
+2 1000
+没看，以后再说。。抓紧时间写作业。。。-_-~~~!!!!!!!!!好囧啊。。。
+
+
+
+

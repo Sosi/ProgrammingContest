@@ -1,0 +1,27 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>John and Brus have received a box of new movies to review.  There are N movies, numbered 0 to N-1, inclusive, and John and Brus each want to review every movie.  John has proposed that they use a special device called a review queue.  The device supports two operations: add a movie, and take a movie (if at least one exists in the queue).  When taking a movie, the movie in the queue that was added earliest is removed from the queue.  John and Brus each have their own review queue.
+
+<br></br><br></br>
+
+There are two phases to the review process.  In the first phase, John distributes the movies between the two queues.  He first takes movie 0 and adds it to either John's queue or Brus's queue, then he takes movie 1 and adds it to one of the queues, and so on, until each movie has been added to one of the queues.
+
+<br></br><br></br>
+
+In the second phase, John and Brus simultaneously start reviewing movies.  Each of them will continuously repeat the following sequence of moves.
+
+<ol><li>
+Take a movie from his own review queue.  If this move is not successful because his queue is empty, he will quit completely (even if more movies will be added to his queue at a later time).
+</li><li>
+Review this movie.
+</li><li>
+Add this movie to the other person's review queue if he has not yet reviewed it.
+</li></ol>
+
+Steps 1 and 3 take no time.  If a queue receives an add and a take operation at the same time, the add operation is completed first.  So, for example, if John's queue is empty and Brus attempts to add a movie to John's queue at the same time that John tries to take a movie from the same queue, the movie will get added and John will succeed in taking the movie from the queue.
+
+<br></br><br></br>
+
+The amount of time required for step 2 varies between John and Brus for each movie.  When reviewing a movie, neither John nor Brus feel that it is always necessary to view the entire movie.  It takes John <b>timeJ</b>[i] minutes to review movie i, and it takes Brus <b>timeB</b>[i] minutes.
+
+<br></br><br></br>
+
+In the first phase, since John has two choices for distributing each movie, there are 2^N ways to distribute the movies.  A distribution is considered good if John and Brus each review every movie during the second phase before quitting.  Return the total number of good ways to distribute the movies.</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>TheMoviesLevelThreeDivTwo</td></tr><tr><td>Method:</td><td>find</td></tr><tr><td>Parameters:</td><td>vector &lt;int&gt;, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int find(vector &lt;int&gt; timeJ, vector &lt;int&gt; timeB)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>timeJ</b> will contain between 1 and 20 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>timeJ</b> and <b>timeB</b> will contain the same number of elements.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>timeJ</b> will be between 1 and 20, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>timeB</b> will be between 1 and 20, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{4, 4}</pre></td></tr><tr><td><pre>{4, 4}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">We are interested in two distributions where John and Brus get one movie each.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{1, 4}</pre></td></tr><tr><td><pre>{4, 2}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">Here the only possible distribution is where Brus gets the first movie and John gets the second one.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{10, 10, 10, 10}</pre></td></tr><tr><td><pre>{1, 1, 1, 10}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3</pre></td></tr><tr><td><table><tr><td colspan="2">Brus must get all the movies except one of the first three during the distribution.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{1, 2, 3, 4, 5, 6, 7}</pre></td></tr><tr><td><pre>{7, 6, 5, 4, 3, 2, 1}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 98</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

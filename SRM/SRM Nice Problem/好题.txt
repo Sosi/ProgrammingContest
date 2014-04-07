@@ -1,0 +1,34 @@
+SRM 579 UndoHistory  DIV2 500
+int minPresses(vector <string> lines)
+{
+    int cost = lines[0].size() + 1;
+    for (int i = 1 ; i < lines.size(); i++) {
+        int icost = 1000000000; //A large number
+        
+        
+        for (int j = 0; j < i; j++) {
+            int k = 0;
+            while (k < lines[i].size() && k < lines[j].size() ) {
+                if (lines[i][k] == lines[j][k]) {
+                    k++;
+                } else {
+                    break;
+                }
+            }
+            // k is the length of the largest common prefix between lines[i] and lines[j]
+            int ijcost = 2 + (lines[i].size() - k) + 1;
+            if (j == i-1 && k==lines[j].size()) {
+                // lines[j] is a prefix of lines[i], then there is a cost to continue
+                // typing lines[i] equal to (lines[i].size() - k) + 1, same as subtracting
+                // 2 from ijcost:
+                ijcost -= 2;
+            }
+            icost = std::min<int>(icost, ijcost);
+
+        }
+        cost += icost;
+    }
+    return cost;
+}
+SRM 579 MarblePositioning  DIV2 1000
+给定一串圆在第一象限的排列，求接触点从左到右最小的长度是多长？ 数量只有8个所以是排列问题，然后求最小的过程却很复杂！

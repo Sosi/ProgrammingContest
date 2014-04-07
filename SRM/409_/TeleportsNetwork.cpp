@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 // BEGIN CUT HERE
 
 // END CUT HERE
-#line 5 "TheArray.cpp"
+#line 5 "TeleportsNetwork.cpp"
 #include <vector>
 #include <list>
 #include <map>
@@ -85,121 +84,34 @@ int i,j,k;
 #define REP(i,n) for((i)=0;(i)<(int)(n);(i)++)
 #define snuke(c,itr) for(__typeof((c).begin()) itr=(c).begin();itr!=(c).end();itr++)
 
-class TheArray
+class TeleportsNetwork
 {
         public:
-        int find(int n, int d, int first, int last)
+        int distribute(int teleportCount, vector <int> citiesX, vector <int> citiesY)
         {
-            int ret = max(first, last);
-            for(int i= 1; i<n-1; i++)
-            {
-                ret = max(ret , min(first + i*d , last + d*(n-1-i)));
-            }
-            return ret;
+                $CARETPOSITION$
         }
         
-=======
-#include <algorithm>
-#include <complex>
-#include <exception>
-#include <list>
-#include <stack>
-#include <bitset>
-#include <csetjmp>
-#include <fstream>
-#include <locale>
-#include <stdexcept>
-#include <cassert>
-#include <csignal>
-#include <functional>
-#include <map>
-#include <cctype>
-#include <cstdarg>
-#include <iomanip>
-#include <memory>
-#include <streambuf>
-#include <cerrno>
-#include <cstddef>
-#include <ios>
-#include <new>
-#include <string>
-#include <cfloat>
-#include <cstdio>
-#include <iosfwd>
-#include <numeric>
-#include <typeinfo>
-#include <ciso646>
-#include <cstdlib>
-#include <iostream>
-#include <ostream>
-#include <utility>
-#include <climits>
-#include <cstring>
-#include <istream>
-#include <queue>
-#include <valarray>
-#include <clocale>
-#include <ctime>
-#include <iterator>
-#include <set>
-#include <vector>
-#include <cmath>
-#include <deque>
-#include <limits>
-#include <sstream>
-
-using namespace std;
-class TheArray {
-    public:
-    int find(int n, int d, int first, int last) {
-		if(d == 0) return first;
-        int used = abs(first - last)/d;
-		int gap = abs(first - last)%d;
-		int left = n-2 - used;
-		cout<<left<<endl;
-		int ret = 0;
-		while(left > 2 )
-		{
-			left -= 2;
-			ret += d;
-		}
-		if(left == 1)
-			return ret + d - gap+max(first, last);
-		else if(left == 2) return ret +d+ max(first, last);
-		else return max(first , last);
-
-    }
-
-
->>>>>>> 2abe95a3a24240a4ce038cde04508188d0c5d99a
 // BEGIN CUT HERE
 	public:
 	void run_test(int Case) { if ((Case == -1) || (Case == 0)) test_case_0(); if ((Case == -1) || (Case == 1)) test_case_1(); if ((Case == -1) || (Case == 2)) test_case_2(); if ((Case == -1) || (Case == 3)) test_case_3(); if ((Case == -1) || (Case == 4)) test_case_4(); }
 	private:
 	template <typename T> string print_array(const vector<T> &V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
 	void verify_case(int Case, const int &Expected, const int &Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
-	void test_case_0() { int Arg0 = 3; int Arg1 = 5; int Arg2 = 2; int Arg3 = 4; int Arg4 = 7; verify_case(0, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
-	void test_case_1() { int Arg0 = 10; int Arg1 = 100; int Arg2 = 999; int Arg3 = 100; int Arg4 = 999; verify_case(1, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
-	void test_case_2() { int Arg0 = 1000000; int Arg1 = 0; int Arg2 = 474; int Arg3 = 474; int Arg4 = 474; verify_case(2, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
-	void test_case_3() { int Arg0 = 97; int Arg1 = 53; int Arg2 = -92; int Arg3 = 441; int Arg4 = 2717; verify_case(3, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
-	void test_case_4() { int Arg0 = 99; int Arg1 = 3; int Arg2 = -743; int Arg3 = -619; int Arg4 = -535; verify_case(4, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
+	void test_case_0() { int Arg0 = 2; int Arr1[] = {0,1,1,1,2,2}; vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0]))); int Arr2[] = {1,0,1,2,0,2}; vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0]))); int Arg3 = 1; verify_case(0, Arg3, distribute(Arg0, Arg1, Arg2)); }
+	void test_case_1() { int Arg0 = 1; int Arr1[] = {0,1,1,1,2,2}; vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0]))); int Arr2[] = {1,0,1,2,0,2}; vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0]))); int Arg3 = 2; verify_case(1, Arg3, distribute(Arg0, Arg1, Arg2)); }
+	void test_case_2() { int Arg0 = 0; int Arr1[] = {0,1,1,1,2,3,3,4}; vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0]))); int Arr2[] = {1,1,2,0,0,0,2,1}; vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0]))); int Arg3 = 5; verify_case(2, Arg3, distribute(Arg0, Arg1, Arg2)); }
+	void test_case_3() { int Arg0 = 1; int Arr1[] = {0,1,2,3,4}; vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0]))); int Arr2[] = {0,0,0,0,0}; vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0]))); int Arg3 = 1; verify_case(3, Arg3, distribute(Arg0, Arg1, Arg2)); }
+	void test_case_4() { int Arg0 = 4; int Arr1[] = {64,200,384,294,175,107,303,374,224,220,223,99,442}; vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0]))); int Arr2[] = {79,161,83,281,344,217,184,336,431,262,75,474,257}; vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0]))); int Arg3 = 1; verify_case(4, Arg3, distribute(Arg0, Arg1, Arg2)); }
 
 // END CUT HERE
 
 };
-<<<<<<< HEAD
 // BEGIN CUT HERE
 int main()
 {
-        TheArray ___test;
+        TeleportsNetwork ___test;
         ___test.run_test(-1);
         return 0;
-=======
-
-// BEGIN CUT HERE
-int main() {
-TheArray ___test;
-___test.run_test(-1);
->>>>>>> 2abe95a3a24240a4ce038cde04508188d0c5d99a
 }
 // END CUT HERE

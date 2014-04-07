@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 // BEGIN CUT HERE
 
 // END CUT HERE
-#line 5 "TheArray.cpp"
+#line 5 "ClosestRegex.cpp"
 #include <vector>
 #include <list>
 #include <map>
@@ -85,121 +84,52 @@ int i,j,k;
 #define REP(i,n) for((i)=0;(i)<(int)(n);(i)++)
 #define snuke(c,itr) for(__typeof((c).begin()) itr=(c).begin();itr!=(c).end();itr++)
 
-class TheArray
+int dp[55][55];
+class ClosestRegex
 {
         public:
-        int find(int n, int d, int first, int last)
+        string closestString(string text, string regex)
         {
-            int ret = max(first, last);
-            for(int i= 1; i<n-1; i++)
+            int n = text.size();
+            int m = regex.size();
+            string regg="";
+            int atom[55]; memset(atom, 0 ,sizeof(atom));
+            REP(i,regex.size()) if(regex[i]=='*') m--;
+            REP(i,regex.size()) if(regex[i]!='*') regg += regex[i];
+            int id = 0;
+            REP(i, regex.size()) if(regex[i]=='*') {atom[id] = 1;}else if(i>0) id++;
+            REP(i,m) cout<<atom[i]<<" "; cout<<endl;
+            // ºÃÏñÄæÐòÀ´×ö°É£¿£¡
+            REP(i,n) REP(j,m)
             {
-                ret = max(ret , min(first + i*d , last + d*(n-1-i)));
+                if(!atom[j] && regg[j] == text[i])
+                {
+                    dp[i+1][j+1] = dp[i][j];
+                }
             }
-            return ret;
+            return "";
         }
         
-=======
-#include <algorithm>
-#include <complex>
-#include <exception>
-#include <list>
-#include <stack>
-#include <bitset>
-#include <csetjmp>
-#include <fstream>
-#include <locale>
-#include <stdexcept>
-#include <cassert>
-#include <csignal>
-#include <functional>
-#include <map>
-#include <cctype>
-#include <cstdarg>
-#include <iomanip>
-#include <memory>
-#include <streambuf>
-#include <cerrno>
-#include <cstddef>
-#include <ios>
-#include <new>
-#include <string>
-#include <cfloat>
-#include <cstdio>
-#include <iosfwd>
-#include <numeric>
-#include <typeinfo>
-#include <ciso646>
-#include <cstdlib>
-#include <iostream>
-#include <ostream>
-#include <utility>
-#include <climits>
-#include <cstring>
-#include <istream>
-#include <queue>
-#include <valarray>
-#include <clocale>
-#include <ctime>
-#include <iterator>
-#include <set>
-#include <vector>
-#include <cmath>
-#include <deque>
-#include <limits>
-#include <sstream>
-
-using namespace std;
-class TheArray {
-    public:
-    int find(int n, int d, int first, int last) {
-		if(d == 0) return first;
-        int used = abs(first - last)/d;
-		int gap = abs(first - last)%d;
-		int left = n-2 - used;
-		cout<<left<<endl;
-		int ret = 0;
-		while(left > 2 )
-		{
-			left -= 2;
-			ret += d;
-		}
-		if(left == 1)
-			return ret + d - gap+max(first, last);
-		else if(left == 2) return ret +d+ max(first, last);
-		else return max(first , last);
-
-    }
-
-
->>>>>>> 2abe95a3a24240a4ce038cde04508188d0c5d99a
 // BEGIN CUT HERE
 	public:
 	void run_test(int Case) { if ((Case == -1) || (Case == 0)) test_case_0(); if ((Case == -1) || (Case == 1)) test_case_1(); if ((Case == -1) || (Case == 2)) test_case_2(); if ((Case == -1) || (Case == 3)) test_case_3(); if ((Case == -1) || (Case == 4)) test_case_4(); }
 	private:
 	template <typename T> string print_array(const vector<T> &V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
-	void verify_case(int Case, const int &Expected, const int &Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
-	void test_case_0() { int Arg0 = 3; int Arg1 = 5; int Arg2 = 2; int Arg3 = 4; int Arg4 = 7; verify_case(0, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
-	void test_case_1() { int Arg0 = 10; int Arg1 = 100; int Arg2 = 999; int Arg3 = 100; int Arg4 = 999; verify_case(1, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
-	void test_case_2() { int Arg0 = 1000000; int Arg1 = 0; int Arg2 = 474; int Arg3 = 474; int Arg4 = 474; verify_case(2, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
-	void test_case_3() { int Arg0 = 97; int Arg1 = 53; int Arg2 = -92; int Arg3 = 441; int Arg4 = 2717; verify_case(3, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
-	void test_case_4() { int Arg0 = 99; int Arg1 = 3; int Arg2 = -743; int Arg3 = -619; int Arg4 = -535; verify_case(4, Arg4, find(Arg0, Arg1, Arg2, Arg3)); }
+	void verify_case(int Case, const string &Expected, const string &Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
+	void test_case_0() { string Arg0 = "abcd"; string Arg1 = "bcdd"; string Arg2 = "bcdd"; verify_case(0, Arg2, closestString(Arg0, Arg1)); }
+	void test_case_1() { string Arg0 = "topcoder"; string Arg1 = "t*px*coa*de*"; string Arg2 = "ttpcodee"; verify_case(1, Arg2, closestString(Arg0, Arg1)); }
+	void test_case_2() { string Arg0 = "cmu"; string Arg1 = "c*m*fm*u*"; string Arg2 = "cfu"; verify_case(2, Arg2, closestString(Arg0, Arg1)); }
+	void test_case_3() { string Arg0 = "aaaaacccc"; string Arg1 = "a*abc*"; string Arg2 = "aaaaabccc"; verify_case(3, Arg2, closestString(Arg0, Arg1)); }
+	void test_case_4() { string Arg0 = "short"; string Arg1 = "lo*ts*of*let*ter*s"; string Arg2 = ""; verify_case(4, Arg2, closestString(Arg0, Arg1)); }
 
 // END CUT HERE
 
 };
-<<<<<<< HEAD
 // BEGIN CUT HERE
 int main()
 {
-        TheArray ___test;
+        ClosestRegex ___test;
         ___test.run_test(-1);
         return 0;
-=======
-
-// BEGIN CUT HERE
-int main() {
-TheArray ___test;
-___test.run_test(-1);
->>>>>>> 2abe95a3a24240a4ce038cde04508188d0c5d99a
 }
 // END CUT HERE

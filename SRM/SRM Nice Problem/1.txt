@@ -1,0 +1,21 @@
+1 SRM 555 DIV2 955
+
+思考下列方法为什么是正确的：
+
+
+int was[1000][1000][2][2];
+int res[1000][1000][2][2];
+int go(int x,int y,int a, int b)
+{
+	if(y<0) return 0;
+	if(x==1) return int(y==0 && a==b);
+	if(was[x][y][a][b]) return res[x][y][a][b];
+	was[x][y][a][b] = 1;
+	return res[x][y][a][b]=(go(x-1, y,b, a^b) + go(x-1,y-1,b,0))%mod;
+}
+
+the count(int n, int m)
+{
+	memset(was, 0, sizeof(was));
+	return go(n-1,m,0,1);
+}

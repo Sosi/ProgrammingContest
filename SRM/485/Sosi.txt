@@ -1,0 +1,76 @@
+Div 2
+
+1 非常简单，求位数最多有几个9。。。
+
+2 一个简单的数列求和验证的题目。。
+ 分以下几种情况 a为首项，k为公差，然后讨论a和k的奇偶性（需要处理一种特殊情况）当奇数位和偶数位都
+ 满足等差数列要求时，我们应该选择谁呢？基于一个很想然的事实，已知的数列肯定小于等于结果的序列。
+ 
+ 3 第一遍没看懂题目的意思。。。-_-!!!
+ 一个深度优先搜索题目，或者叫回溯吧。。
+ 问题的解空间就是把所有的'?'扩展开，然后每一种情况进行判断。
+ 空间数目当然很大，2^(num('?'))，回溯还是可以搞的，毕竟在前几个'?'的时候，解空间已经可以被剪掉很大一部分了。。
+ 
+ 推荐rng_58的代码，毕竟今年TCO冠军！恩，参加数学竞赛的小伙子搞这个也有优势啊。。
+ 
+ 
+vector<string> C;
+int ans=0;
+bool check(int x,int y)
+{
+	for(int i=0;i<x;i++)
+	{
+		for(int j=0;j<y;j++)
+			if(C[i][j]==C[x][y]&&C[i][y]==C[x][y]&&C[x][j]==C[x][y])
+				return false;
+	}
+	return true;
+}
+void dfs(int x ,int y)
+{
+	if(x==C.size())
+	{
+		ans++;
+		return;
+	}
+	int x2=x,y2=y+1;
+	if(y2==C[0].size())y2-=C[0].size(),x2++;
+
+	if(C[x][y]=='?')
+	{
+		C[x][y]='W';if(check(x,y))dfs(x2,y2);
+		C[x][y]='B';if(check(x,y))dfs(x2,y2);
+		C[x][y]='?';
+	}
+	else if(check(x,y))dfs(x2,y2);
+}
+class RectangleAvoidingColoringEasy
+{
+        public:
+        int count(vector <string> board)
+        {
+			C=board;
+			ans=0;
+			dfs(0,0);
+			return ans;
+
+		}
+};
+
+
+DIV 1
+
+250 
+与DIV2 的500题目相同
+
+500
+与DIV2 1000分题目相同，数据不同。。
+
+所以DFS是不靠谱的。。
+
+
+ 
+ 
+ 
+ 
+ 
