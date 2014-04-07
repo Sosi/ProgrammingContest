@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TheArray.cpp">
+    <ClCompile Include="LongLongTripDiv1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
