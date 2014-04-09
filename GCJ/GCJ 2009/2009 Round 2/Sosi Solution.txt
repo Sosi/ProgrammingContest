@@ -1,0 +1,75 @@
+Our tough implementation problem proved to be so tough that only 10% more people solved it than our tough algorithmic problem; and so many people were familiar with the theorems needed for Problem C that 362 of you breezed right through it. 
+Meanwhile Russia and East Asia dominated the top 10, with 9 out of the 10 top spots. But with all else said and done, first place was no surprise to anyone: ACRush, 2008 Code Jam Champion, finished all four problems less than halfway through the competition, and almost 30 minutes faster than everyone else.
+
+
+1 给一个序列，求出把这个序列C[i]变成C[i]<=i这样一个序列所需要的最少交换次数。
+
+只要从头遍历一遍就OK，复杂度是O(n^2)
+
+2 这个问题没有想法， 是个搜索题目，或者暴力思想
+
+
+
+3 有序的永远是一个非常非常重要的提示信息！！
+
+两种思路，一种是转换为perfect mathcing 的问题，复杂度是O(n^3)
+直接用Dilworth的话是O(n^2)
+
+利用二分图最优匹配搞定！！
+
+
+4 D的small很简单，只要枚举一个圆，两个圆，和3个圆的情况就OK
+一个圆就是半径本身，两个圆是max(r1,r2)，3个圆是枚举两个圆，然后和另一个圆作比较
+
+D题的大数据找不到解题的思路！
+
+就是n个圆，找到两个能够完全覆盖剩余圆的最小半径
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+在Combinatorics,DAGs are called partially ordered sets!!!有向无环图A directed path is called a chain in the poset.An independent set in the DAG, corresponding to a set of points where no '>' relation holds between any two of them, is called an anti-chain. Our problem is then, given a poset, find the minimum number of chains needed to cover all the points.
+
+Dilworth's theorem is closely related to other classical theorems in combinatorics. In fact it is equivalent to Hall's marriage theorem on bipartite graphs, and the max-flow-min-cut theorem.
+
+留下的两个问题
+
+
+Hall's marriage theorem
+An alternative term for transversal is system of distinct representatives or "SDR".
+The standard example of an application of the marriage theorem is to imagine two groups; one of n men, and one of n women. For each woman, there is a subset of the men any one of which she would happily marry; and any man would be happy to marry a woman who wants to marry him. Consider whether it is possible to pair up (in marriage) the men and women so that every person is happy.
+
+Example 1: Consider S = {S1, S2, S3} with
+
+S1 = {1, 2, 3}
+S2 = {1, 4, 5}
+S3 = {3, 5}.
+A valid SDR would be {1, 4, 5}. (Note this is not unique: {2, 1, 3} works equally well, for example.)
+
+Example 2: Consider S = {S1, S2, S3, S4} with
+
+S1 = {2, 3, 4, 5}
+S2 = {4, 5}
+S3 = {5}
+S4 = {4}.
+No valid SDR exists; the marriage condition is violated as is shown by the subcollection {S2, S3, S4}.
+这个问题天然等价成为一个完美匹配问题
+Given a finite bipartite graph G:= (S + T, E) with two equally sized partitions S and T, does there exist a perfect matching, i.e. a set of edges so that every vertex of G is incident to precisely one of them?
+
+
+
