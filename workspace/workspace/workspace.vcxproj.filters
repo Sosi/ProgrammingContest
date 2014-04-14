@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EllysScrabble.cpp">
+    <ClCompile Include="EllysLamps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

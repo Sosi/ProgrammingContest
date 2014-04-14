@@ -83,7 +83,21 @@ class EllysLamps
 public:
 int getMin(string lamps)
 {
-//$CARETPOSITION$
+	int num = 0;
+
+	for(int i=0; i<lamps.size();)
+	{
+		if(i+1 < lamps.size() && lamps[i] != lamps[i+1])
+		{
+			i+=2;
+			num++;
+		}else if(i+2 < lamps.size() && lamps[i] == lamps[i+1] && lamps[i] == lamps[i+2] && lamps[i]== 'Y')
+		{
+			i+=3;
+			num++;
+		}else i++;
+	}
+	return num;
 }
 
 // BEGIN CUT HERE
