@@ -10,6 +10,9 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ColorfulCoins.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8173DB8A-01E8-40C8-8AE7-1C9ACB4AB4C2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
