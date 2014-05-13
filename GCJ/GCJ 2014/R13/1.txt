@@ -1,0 +1,13 @@
+6
+3
+ab bbbc cd
+4
+aa aa bc c
+2
+abc bcd
+5
+aaaa aa aaaab bbb bb
+5
+aaaca aa aaaab bbb bb
+6
+acpcd dx aaaa aa bbb bb
