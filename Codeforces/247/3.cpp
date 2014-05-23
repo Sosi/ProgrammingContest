@@ -80,21 +80,42 @@ int i,j,k;
 int dirx[]= {1, 1, 0,-1,-1,-1,0,1};
 int diry[]= {0,-1,-1,-1, 0, 1,1,1}; //clockwise
 
+#define MOD 1000000007LL
+long long dp[105][105]; // dp[n][d];
 int main()
 {
     ios_base::sync_with_stdio(0);
 //    freopen("1.txt","r",stdin);
-    int a,b,c,d;
-    cin>>a>>b>>c>>d;
-    string s; cin>>s;
-    long long ret = 0;
-    for(int i=0; i<s.size(); i++)
+    int n,k,d; cin>>n>>k>>d;
+    for(int i=0; i<105; i++) dp[0][i]= 1LL;
+    for(int i=1; i<=n; i++)
     {
-        if(s[i] == '1') ret += a;
-        else if(s[i] == '2') ret+= b;
-        else if(s[i]=='3') ret+= c;
-        else ret += d;
+        //dp[i][d-1];
+        for(int j=1; j<=i; j++)
+        {
+            if(j <= d-1)
+            dp[i][d-1] += dp[i-j][d-1];
+            dp[i][d-1] %=MOD;
+        }
     }
-    cout<<ret<<endl;
+//    cout<<n<<" "<<k<<" "<<d<<endl;
+//    cout<<"d "<<d-1<<endl;
+//    for(int i=1; i<=n; i++) cout<<dp[i][d-1]<<" ";
+//    cout<<endl;
+    for(int i=1; i<=n; i++)
+    {
+        //dp[i][d-1];
+        for(int j=1; j<=i; j++)
+        {
+            if(j <= k)
+            dp[i][k] += dp[i-j][k];
+            dp[i][k] %=MOD;
+        }
+    }
+
+//    cout<<"k "<<k<<endl;
+//    for(int i=1; i<=n; i++) cout<<dp[i][k]<<" ";
+//    cout<<endl;
+    cout<<(MOD+dp[n][k] - dp[n][d-1])%MOD;
     return 0;
 }

@@ -84,17 +84,32 @@ int main()
 {
     ios_base::sync_with_stdio(0);
 //    freopen("1.txt","r",stdin);
-    int a,b,c,d;
-    cin>>a>>b>>c>>d;
-    string s; cin>>s;
-    long long ret = 0;
-    for(int i=0; i<s.size(); i++)
+    int a[5][5];
+    for(int i=0; i<5; i++) for(int j=0; j<5; j++)
     {
-        if(s[i] == '1') ret += a;
-        else if(s[i] == '2') ret+= b;
-        else if(s[i]=='3') ret+= c;
-        else ret += d;
+        cin>>a[i][j];
     }
+    vector<int> x;
+    for(int i=0; i<5; i++) x.push_back(i);
+    sort(x.begin(), x.end());
+    long long ret = -1;
+    do{
+            long long y = 0;
+            for(int i=0; i<5; i++)
+            {
+                for(int j=i; j<5; j+=2)
+                {
+                    if(j+1<5)
+                    {
+                        y+= a[x[j+1]][x[j]];
+                        y+= a[x[j]][x[j+1]];
+                    }
+
+                }
+            }
+            ret = max(ret, y);
+
+    }while(next_permutation(x.begin(),x.end()));
     cout<<ret<<endl;
     return 0;
 }

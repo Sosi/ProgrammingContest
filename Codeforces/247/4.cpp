@@ -79,22 +79,30 @@ int i,j,k;
 #define snuke(c,itr) for(__typeof((c).begin()) itr=(c).begin();itr!=(c).end();itr++)
 int dirx[]= {1, 1, 0,-1,-1,-1,0,1};
 int diry[]= {0,-1,-1,-1, 0, 1,1,1}; //clockwise
+long long judge(long long x, int k)
+{
 
+}
 int main()
 {
     ios_base::sync_with_stdio(0);
-//    freopen("1.txt","r",stdin);
-    int a,b,c,d;
-    cin>>a>>b>>c>>d;
-    string s; cin>>s;
-    long long ret = 0;
-    for(int i=0; i<s.size(); i++)
+    freopen("1.txt","r",stdin);
+    long long m; int k;
+    cin>>m>>k;
+    long long l = 1; long long r = (1LL<<62)-1LL;
+    cout<<l<<" "<<r<<endl;
+    long long ans = 0;
+    while(1)
     {
-        if(s[i] == '1') ret += a;
-        else if(s[i] == '2') ret+= b;
-        else if(s[i]=='3') ret+= c;
-        else ret += d;
+        long long mid = (l+r)>>1;
+        long long ret = judge(mid, k);
+        if(ret = m)
+        {
+            ans = mid;
+            break;
+        }else if(ret > m){
+            r = mid;
+        }else l = mid;
     }
-    cout<<ret<<endl;
     return 0;
 }
